@@ -1,0 +1,1479 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusantara Flavors - Modern Indonesian Restaurant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #c9a96e;
+            --secondary-color: #2c1810;
+            --accent-color: #e74c3c;
+            --text-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gold-gradient: linear-gradient(45deg, #c9a96e, #f4e4bc);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #fafbfc;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .cart-btn {
+            background: var(--gold-gradient);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.4);
+        }
+
+        .cart-count {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="%23c9a96e"/><circle cx="300" cy="150" r="100" fill="%23f4e4bc" opacity="0.3"/><circle cx="900" cy="450" r="80" fill="%23f4e4bc" opacity="0.3"/><rect x="100" y="200" width="200" height="100" rx="10" fill="%23fff" opacity="0.1"/><rect x="800" y="100" width="150" height="80" rx="10" fill="%23fff" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-btn {
+            background: var(--gold-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: var(--gold-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-category {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .menu-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-header {
+            background: var(--gold-gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            opacity: 0.9;
+        }
+
+        .menu-items {
+            padding: 2rem;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: #f8f9fa;
+            padding-left: 1rem;
+            border-radius: 10px;
+        }
+
+        .item-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text-dark);
+        }
+
+        .item-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .add-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-left: 1rem;
+        }
+
+        .add-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* ===== Contact Section ===== */
+.contact {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.contact-info {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.info-item i {
+    color: var(--primary-color);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.contact-map {
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-map {
+        height: 300px;
+        order: -1; /* Map on top for mobile */
+    }
+}
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .cart-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .cart-items {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .cart-total {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--gold-gradient);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--gold-gradient);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .cart-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">Uncle Wang Kopi Tiam</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#menu" class="nav-link">Menu</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li>
+                        <button class="cart-btn" id="cart-toggle">
+                            Cart <span class="cart-count" id="cart-count">0</span>
+                        </button>
+                    </li>
+                </ul>
+                <button class="mobile-toggle" id="mobile-toggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Uncle Wang Kopi Tiam</h1>
+            <p>Authentic Traditional Kopitiam Experience</p>
+            <a href="#menu" class="cta-btn">Explore Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Uncle Wang</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Nestled in the heart of our neighborhood, Uncle Wang Kopi Tiam carries the warm tradition of the classic kopitiam. Here, the rich aroma of freshly brewed coffee mingles with the savory scents of traditional breakfast favorites. Uncle Wang, a friendly face you'll feel like you've known forever, welcomes every guest as family.</p>
+                    <br>
+                    <p>At Uncle Wang Kopi Tiam, we are passionate about local flavors and community. We believe in quality ingredients and recipes passed down through generations. Every dish from our menu tells a story – from the comforting Laksa broth to our handcrafted Roti Pandan. We hope to bring people together over a warm cup of kopi and a hearty meal. Selamat menikmati!</p>
+                </div>
+                <div class="about-image">
+                    ☕ Traditional Kopitiam 🍜
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-grid">
+                <!-- Sarapan (Breakfast) -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Sarapan (Breakfast)</h3>
+                        <p class="category-desc">Traditional breakfast to start your day</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bubur Salmon</h4>
+                                <p>Warm rice porridge with tender slices of salmon</p>
+                                <span class="item-price">Rp 30.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bubur Salmon" data-price="30000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bakmi Ayam Jamur</h4>
+                                <p>Yellow noodles with shredded chicken and mushrooms</p>
+                                <span class="item-price">Rp 30.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bakmi Ayam Jamur" data-price="30000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Bubur Ayam + Kopi</h4>
+                                <p>Chicken porridge served with coffee</p>
+                                <span class="item-price">Rp 30.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Bubur Ayam + Kopi" data-price="30000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Bubur Salmon + Kopi</h4>
+                                <p>Salmon porridge served with coffee</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Bubur Salmon + Kopi" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Bakmi Ayam Jamur + Kopi</h4>
+                                <p>Chicken mushroom noodles with coffee</p>
+                                <span class="item-price">Rp 30.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Bakmi Ayam Jamur + Kopi" data-price="30000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Kopi dan Gandas Turi (2pcs)</h4>
+                                <p>Coffee with traditional steamed dumplings</p>
+                                <span class="item-price">Rp 25.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Kopi dan Gandas Turi" data-price="25000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Kopi dan Pisang Goreng (2pcs)</h4>
+                                <p>Coffee with fried banana fritters</p>
+                                <span class="item-price">Rp 25.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Kopi dan Pisang Goreng" data-price="25000">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roti (Toast) -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Roti (Toast)</h3>
+                        <p class="category-desc">Traditional toast with various spreads</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Roti Panggang Srikaya</h4>
+                                <p>Toast with traditional kaya jam</p>
+                                <span class="item-price">Rp 25.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Roti Panggang Srikaya" data-price="25000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Roti Panggang Butter</h4>
+                                <p>Toast with creamy butter</p>
+                                <span class="item-price">Rp 25.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Roti Panggang Butter" data-price="25000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Roti Panggang Nutella</h4>
+                                <p>Toast with Nutella spread</p>
+                                <span class="item-price">Rp 30.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Roti Panggang Nutella" data-price="30000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Roti Srikaya/Butter + Kopi</h4>
+                                <p>Toast with kaya or butter plus coffee</p>
+                                <span class="item-price">Rp 30.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Roti Srikaya/Butter + Kopi" data-price="30000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Roti Nutella + Kopi</h4>
+                                <p>Nutella toast with coffee</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Roti Nutella + Kopi" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Roti Srikaya/Butter + Kopi + Telur</h4>
+                                <p>Toast, coffee, and 2 soft-boiled eggs</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Roti Srikaya/Butter + Kopi + Telur" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Paket Roti Nutella + Kopi + Telur</h4>
+                                <p>Nutella toast, coffee, and 2 soft-boiled eggs</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Paket Roti Nutella + Kopi + Telur" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Telur Setengah Matang (2 butir)</h4>
+                                <p>Two soft-boiled eggs</p>
+                                <span class="item-price">Rp 15.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Telur Setengah Matang" data-price="15000">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alla Mee -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Alla Mee</h3>
+                        <p class="category-desc">Traditional noodle soups</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Laksa Ayam</h4>
+                                <p>Coconut laksa soup with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Laksa Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Laksa Seafood</h4>
+                                <p>Coconut laksa soup with seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Laksa Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Laksa Sapi</h4>
+                                <p>Coconut laksa soup with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Laksa Sapi" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Kari Ayam</h4>
+                                <p>Curry noodles with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Kari Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Kari Seafood</h4>
+                                <p>Curry noodles with seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Kari Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Kari Sapi</h4>
+                                <p>Curry noodles with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Kari Sapi" data-price="45000">Add</button>
+                        </div>
+                    </div>
+                </div>
+              <!-- Nasi (Rice Dishes) -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Nasi (Rice Dishes)</h3>
+                        <p class="category-desc">Hearty rice dishes with various proteins</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Ayam Goreng Lengkuas</h4>
+                                <p>Rice with galangal fried chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Ayam Goreng Lengkuas" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Ayam Goreng Cabe Ijo</h4>
+                                <p>Rice with green chili fried chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Ayam Goreng Cabe Ijo" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Iga Goreng Cabe Ijo</h4>
+                                <p>Rice with green chili fried ribs</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Iga Goreng Cabe Ijo" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Ayam Char Siu Madu</h4>
+                                <p>Rice with honey char siu chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Ayam Char Siu Madu" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Ayam Telur Asin</h4>
+                                <p>Rice with salted egg chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Ayam Telur Asin" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Rendang Sapi</h4>
+                                <p>Rice with beef rendang</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Rendang Sapi" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Sapi Hong</h4>
+                                <p>Rice with Hong style beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Sapi Hong" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Kari Sapi</h4>
+                                <p>Rice with beef curry</p>
+                                <span class="item-price">Rp 50.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Kari Sapi" data-price="50000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Cumi Sambel Goreng Merah</h4>
+                                <p>Rice with squid in red chili sauce</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Cumi Sambel Goreng Merah" data-price="40000">Add</button>
+                        </div>
+                    </div>
+                </div>
+                  <!-- Nasi Goreng (Fried Rice) -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Nasi Goreng (Fried Rice)</h3>
+                        <p class="category-desc">Traditional Indonesian fried rice variations</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Special Ayam Char Siu Mix Seafood</h4>
+                                <p>Special fried rice with char siu chicken and mixed seafood</p>
+                                <span class="item-price">Rp 50.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Special Ayam Char Siu Mix Seafood" data-price="50000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Ayam</h4>
+                                <p>Fried rice with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Seafood</h4>
+                                <p>Fried rice with mixed seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Sapi</h4>
+                                <p>Fried rice with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Sapi" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Cabe Ijo Ayam</h4>
+                                <p>Green chili fried rice with chicken</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Cabe Ijo Ayam" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Cabe Ijo Seafood</h4>
+                                <p>Green chili fried rice with seafood</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Cabe Ijo Seafood" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Cabe Ijo Sapi</h4>
+                                <p>Green chili fried rice with beef</p>
+                                <span class="item-price">Rp 50.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Cabe Ijo Sapi" data-price="50000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Hongkong Ayam</h4>
+                                <p>Hong Kong style fried rice with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Hongkong Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Hongkong Seafood</h4>
+                                <p>Hong Kong style fried rice with seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Hongkong Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Nasi Goreng Hongkong Sapi</h4>
+                                <p>Hong Kong style fried rice with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Nasi Goreng Hongkong Sapi" data-price="45000">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wok -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Wok</h3>
+                        <p class="category-desc">Stir-fried noodles cooked in wok</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Char Kwe Tiaw Ayam</h4>
+                                <p>Stir-fried flat noodles with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Char Kwe Tiaw Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Char Kwe Tiaw Seafood</h4>
+                                <p>Stir-fried flat noodles with seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Char Kwe Tiaw Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Char Kwe Tiaw Sapi</h4>
+                                <p>Stir-fried flat noodles with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Char Kwe Tiaw Sapi" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Goreng Ayam</h4>
+                                <p>Fried noodles with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Goreng Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Goreng Seafood</h4>
+                                <p>Fried noodles with seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Goreng Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Goreng Sapi</h4>
+                                <p>Fried noodles with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Goreng Sapi" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Goreng Cabe Ijo Ayam</h4>
+                                <p>Green chili fried noodles with chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Goreng Cabe Ijo Ayam" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Goreng Cabe Ijo Seafood</h4>
+                                <p>Green chili fried noodles with seafood</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Goreng Cabe Ijo Seafood" data-price="40000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Mee Goreng Cabe Ijo Sapi</h4>
+                                <p>Green chili fried noodles with beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Mee Goreng Cabe Ijo Sapi" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bakmie Goreng Ayam Char Siu</h4>
+                                <p>Fried noodles with char siu chicken</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bakmie Goreng Ayam Char Siu" data-price="40000">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bakmie -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Bakmie</h3>
+                        <p class="category-desc">Traditional Chinese wheat noodles</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bakmie Ayam Cincang</h4>
+                                <p>Wheat noodles with minced chicken</p>
+                                <span class="item-price">Rp 35.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bakmie Ayam Cincang" data-price="35000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bakmie Sapi Hong</h4>
+                                <p>Wheat noodles with Hong style beef</p>
+                                <span class="item-price">Rp 45.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bakmie Sapi Hong" data-price="45000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bakmie Ayam Char Siu Madu</h4>
+                                <p>Wheat noodles with honey char siu chicken</p>
+                                <span class="item-price">Rp 40.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bakmie Ayam Char Siu Madu" data-price="40000">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Snacks -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Snacks</h3>
+                        <p class="category-desc">Light bites and traditional snacks</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Bakso Goreng Ayam Udang</h4>
+                                <p>Fried chicken and prawn meatballs</p>
+                                <span class="item-price">Rp 28.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Bakso Goreng Ayam Udang" data-price="28000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Pisang Goreng Srikaya (2pcs)</h4>
+                                <p>Fried banana with kaya filling</p>
+                                <span class="item-price">Rp 20.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Pisang Goreng Srikaya" data-price="20000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Gandas Turi (2pcs)</h4>
+                                <p>Traditional steamed cassava dumplings</p>
+                                <span class="item-price">Rp 20.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Gandas Turi" data-price="20000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Singkong Keju</h4>
+                                <p>Fried cassava with cheese topping</p>
+                                <span class="item-price">Rp 20.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Singkong Keju" data-price="20000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Singkong Thailand</h4>
+                                <p>Thai style fried cassava</p>
+                                <span class="item-price">Rp 20.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Singkong Thailand" data-price="20000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Kentang Goreng Keju</h4>
+                                <p>Fried potatoes with cheese topping</p>
+                                <span class="item-price">Rp 25.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Kentang Goreng Keju" data-price="25000">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverages -->
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 class="category-title">Beverages</h3>
+                        <p class="category-desc">Traditional kopitiam drinks</p>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Teh Tawar</h4>
+                                <p>Plain tea</p>
+                                <span class="item-price">Rp 5.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Teh Tawar" data-price="5000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Teh Tawar Manis</h4>
+                                <p>Sweet tea</p>
+                                <span class="item-price">Rp 5.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Teh Tawar Manis" data-price="5000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Air Mineral</h4>
+                                <p>Mineral water</p>
+                                <span class="item-price">Rp 5.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Air Mineral" data-price="5000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Badak</h4>
+                                <p>Traditional soda drink</p>
+                                <span class="item-price">Rp 5.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Badak" data-price="5000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Kopi Tarik</h4>
+                                <p>Traditional pulled coffee</p>
+                                <span class="item-price">Rp 10.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Kopi Tarik" data-price="10000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Kopi Gula Melaka</h4>
+                                <p>Coffee with palm sugar</p>
+                                <span class="item-price">Rp 10.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Kopi Gula Melaka" data-price="10000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Kopi Salted Caramel</h4>
+                                <p>Coffee with salted caramel flavor</p>
+                                <span class="item-price">Rp 10.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Kopi Salted Caramel" data-price="10000">Add</button>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <h4>Kopi Pandan</h4>
+                                <p>Coffee with pandan flavor</p>
+                                <span class="item-price">Rp 10.000</span>
+                            </div>
+                            <button class="add-btn" data-name="Kopi Pandan" data-price="10000">Add</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="section-title">Visit Us</h2>
+        
+        <div class="contact-content">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>Uncle Wang Kopitiam Gading Serpong</h3>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Ruko Sorrento Junction, Jl. Ir.Sukarno No.7, Curug Sangereng, Kelapa Dua, Tangerang Regency, Banten 15810</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>+62 85148707154</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>Unclewangs2025</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <p>Open Daily: 7:00 AM – 10:00 PM</p>
+                </div>
+            </div>
+
+           <!-- Google Map Embed: Uncle Wang Gading Serpong -->
+<div class="contact-map" style="width: 100%; height: 400px;">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.435088152285!2d106.627756!3d-6.2612443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb000b800069%3A0x642c877dd77aadcd!2sUNCLE%20WANG%20GADING%20SERPONG!5e0!3m2!1sen!2sid!4v1722390843430!5m2!1sen!2sid"
+    width="100%" 
+    height="100%" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3 class="cart-title">Your Order</h3>
+                <button class="close-btn" id="close-cart">&times;</button>
+            </div>
+            <ul class="cart-items" id="cart-items"></ul>
+            <div class="cart-total" id="cart-total">Total: $0</div>
+            <button class="checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+
+        // DOM elements
+        const cartToggle = document.getElementById('cart-toggle');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const cartItems = document.getElementById('cart-items');
+        const cartCount = document.getElementById('cart-count');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const addBtns = document.querySelectorAll('.add-btn');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        // Mobile menu toggle
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Add to cart functionality
+        addBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const name = btn.dataset.name;
+                const price = parseFloat(btn.dataset.price);
+                addToCart(name, price);
+            });
+        });
+
+        // Cart modal controls
+        cartToggle.addEventListener('click', () => {
+            cartModal.style.display = 'block';
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        cartModal.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        // Add to cart function
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            
+            updateCartUI();
+            showNotification(`${name} added to cart!`);
+        }
+
+        // Remove from cart function
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Update cart UI
+        function updateCartUI() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            let itemCount = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                itemCount += item.quantity;
+
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                li.innerHTML = `
+                    <div>
+                        <strong>${item.name}</strong><br>
+                        <small>${item.price} x ${item.quantity}</small>
+                    </div>
+                    <div>
+                        <strong>${(item.price * item.quantity).toFixed(2)}</strong>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+                cartItems.appendChild(li);
+            });
+
+            cartCount.textContent = itemCount;
+            cartTotal.textContent = `Total: ${total.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<li style="text-align: center; color: #999; padding: 2rem;">Your cart is empty</li>';
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2500);
+        }
+
+        // Checkout functionality
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            showNotification(`Order placed! Total: ${total.toFixed(2)}`);
+            cart = [];
+            updateCartUI();
+            cartModal.style.display = 'none';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe menu categories
+        document.querySelectorAll('.menu-category').forEach(category => {
+            observer.observe(category);
+        });
+
+        // Initialize cart UI
+        updateCartUI();
+    </script>
+</body>
+</html>
