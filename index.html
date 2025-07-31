@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nusantara Flavors - Modern Indonesian Restaurant</title>
+    <title>Uncle Wang Kopitiam</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -105,6 +105,15 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
         }
+
+        .category-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
 
         .cart-btn:hover {
             transform: translateY(-2px);
@@ -595,13 +604,14 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Uncle Wang Kopi Tiam</h1>
-            <p>Authentic Traditional Kopitiam Experience</p>
-            <a href="#menu" class="cta-btn">Explore Menu</a>
-        </div>
-    </section>
+<section class="hero" style="background-image: url('images/Menu10.png');">
+    <div class="hero-content">
+        <h1>Uncle Wang Kopi Tiam</h1>
+        <p>Authentic Traditional Kopitiam Experience</p>
+        <a href="#menu" class="cta-btn">Explore Menu</a>
+    </div>
+</section>
+
 
     <!-- About Section -->
     <section class="about" id="about">
@@ -614,22 +624,25 @@
                     <p>At Uncle Wang Kopi Tiam, we are passionate about local flavors and community. We believe in quality ingredients and recipes passed down through generations. Every dish from our menu tells a story – from the comforting Laksa broth to our handcrafted Roti Pandan. We hope to bring people together over a warm cup of kopi and a hearty meal. Selamat menikmati!</p>
                 </div>
                 <div class="about-image">
-                    ☕ Traditional Kopitiam 🍜
-                </div>
+    <img src="images/logo.png" alt="Logo Uncle Wang" style="max-width: 80%; height: auto;">
+</div>
             </div>
         </div>
     </section>
 
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
+ <section class="menu" id="menu">
         <div class="container">
             <h2 class="section-title">Our Menu</h2>
             <div class="menu-grid">
+                
                 <!-- Sarapan (Breakfast) -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Sarapan (Breakfast)</h3>
-                        <p class="category-desc">Traditional breakfast to start your day</p>
+                        <img src="images/Menu1.png" alt="Sarapan Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Sarapan (Breakfast)</h3>
+                            <p class="category-desc">Traditional breakfast to start your day</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -691,11 +704,14 @@
                     </div>
                 </div>
 
-                <!-- Roti (Toast) -->
+                <!-- Roti (Bread) -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Roti (Toast)</h3>
-                        <p class="category-desc">Traditional toast with various spreads</p>
+                        <img src="images/Menu2.png" alt="Roti Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Roti (Bread)</h3>
+                            <p class="category-desc">Traditional toast with various spreads</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -768,8 +784,11 @@
                 <!-- Alla Mee -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Alla Mee</h3>
-                        <p class="category-desc">Traditional noodle soups</p>
+                        <img src="images/Menu3.png" alt="Alla Mee Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Alla Mee</h3>
+                            <p class="category-desc">Traditional Malaysian noodle soups</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -822,11 +841,15 @@
                         </div>
                     </div>
                 </div>
-              <!-- Nasi (Rice Dishes) -->
+
+                <!-- Nasi (Rice Dishes) -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Nasi (Rice Dishes)</h3>
-                        <p class="category-desc">Hearty rice dishes with various proteins</p>
+                        <img src="images/Menu4.png" alt="Nasi Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Nasi (Rice Dishes)</h3>
+                            <p class="category-desc">Traditional Indonesian rice dishes</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -903,11 +926,15 @@
                         </div>
                     </div>
                 </div>
-                  <!-- Nasi Goreng (Fried Rice) -->
+
+                <!-- Nasi Goreng (Fried Rice) -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Nasi Goreng (Fried Rice)</h3>
-                        <p class="category-desc">Traditional Indonesian fried rice variations</p>
+                        <img src="images/Menu5.png" alt="Nasi Goreng Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Nasi Goreng (Fried Rice)</h3>
+                            <p class="category-desc">Traditional Indonesian fried rice</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -996,8 +1023,11 @@
                 <!-- Wok -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Wok</h3>
-                        <p class="category-desc">Stir-fried noodles cooked in wok</p>
+                        <img src="images/Menu6.png" alt="Wok Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Wok</h3>
+                            <p class="category-desc">Stir-fried noodles cooked in wok</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -1086,8 +1116,11 @@
                 <!-- Bakmie -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Bakmie</h3>
-                        <p class="category-desc">Traditional Chinese wheat noodles</p>
+                        <img src="images/Menu7.png" alt="Bakmie Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Bakmie</h3>
+                            <p class="category-desc">Traditional wheat noodles</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -1120,8 +1153,11 @@
                 <!-- Snacks -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Snacks</h3>
-                        <p class="category-desc">Light bites and traditional snacks</p>
+                        <img src="images/Menu8.png" alt="Snacks Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Snacks</h3>
+                            <p class="category-desc">Light bites and traditional snacks</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -1178,8 +1214,11 @@
                 <!-- Beverages -->
                 <div class="menu-category">
                     <div class="category-header">
-                        <h3 class="category-title">Beverages</h3>
-                        <p class="category-desc">Traditional kopitiam drinks</p>
+                        <img src="images/Menu9.png" alt="Beverages Image" class="category-img">
+                        <div class="category-content">
+                            <h3 class="category-title">Beverages</h3>
+                            <p class="category-desc">Traditional kopitiam drinks</p>
+                        </div>
                     </div>
                     <div class="menu-items">
                         <div class="menu-item">
@@ -1248,6 +1287,8 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
         </div>
     </section>
 
