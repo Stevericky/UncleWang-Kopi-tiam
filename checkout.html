@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout | Uncle Wang Kopi Tiam</title>
+  <link rel="stylesheet" href="style.css"> <!-- Sesuaikan jika kamu punya file CSS -->
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffdf7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 80px auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .order-summary {
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .total-price {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 15px;
+      text-align: right;
+      color: #333;
+    }
+
+    .btn-submit {
+      background-color: #d4b46a;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 14px;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #b89c58;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label for="name">Nama Lengkap</label>
+      <input type="text" id="name" required>
+
+      <label for="phone">Nomor HP / WhatsApp</label>
+      <input type="tel" id="phone" required>
+
+      <label for="note">Catatan Tambahan</label>
+      <textarea id="note" rows="3" placeholder="Contoh: tidak pedas, bungkus terpisah..."></textarea>
+
+      <div class="order-summary" id="order-summary">
+        <strong>Ringkasan Pesanan</strong>
+        <div id="order-items"></div>
+        <div class="total-price" id="order-total">Total: Rp 0</div>
+      </div>
+
+      <button type="submit" class="btn-submit">Bayar Sekarang</button>
+    </form>
+  </div>
+
+  <script>
+    // Ambil cart dari localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const orderItemsContainer = document.getElementById('order-items');
+    const totalDisplay = document.getElementById('order-total');
+
+    let total = 0;
+
+    cart.forEach(item => {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'order-item';
+      itemDiv.innerHTML = `<span>${item.name} x${item.quantity || 1}</span><span>Rp ${item.price.toLocaleString()}</span>`;
+      orderItemsContainer.appendChild(itemDiv);
+      total += item.price * (item.quantity || 1);
+    });
+
+    totalDisplay.textContent = 'Total: Rp ' + total.toLocaleString();
+
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Pesanan berhasil! (Fungsi pembayaran akan ditambahkan nanti)');
+      // Nanti di sini sambungkan ke backend atau Midtrans
+    });
+  </script>
+
+</body>
+</html>
