@@ -1,171 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Checkout | Uncle Wang Kopi Tiam</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #fffdf7;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout | Uncle Wang Kopi Tiam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c9a96e;
+            --secondary-color: #2c1810;
+            --accent-color: #e74c3c;
+            --text-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --gold-gradient: linear-gradient(45deg, #c9a96e, #f4e4bc);
+        }
 
-    .container {
-      max-width: 700px;
-      margin: 80px auto;
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafbfc;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+        }
 
-    h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 30px;
-    }
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: 600;
-    }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+        .checkout-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
 
-    .order-summary {
-      background: #f7f7f7;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 20px;
-    }
+        .checkout-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
 
-    .order-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px dashed #ccc;
-    }
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-    .total-price {
-      font-weight: bold;
-      font-size: 18px;
-      margin-top: 15px;
-      text-align: right;
-      color: #333;
-    }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
 
-    .btn-submit, .btn-back {
-      background-color: #d4b46a;
-      color: white;
-      font-weight: bold;
-      border: none;
-      padding: 14px;
-      width: 100%;
-      border-radius: 8px;
-      font-size: 16px;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+        input, textarea, select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
 
-    .btn-back {
-      background-color: #aaa;
-    }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.1);
+        }
 
-    .btn-submit:hover {
-      background-color: #b89c58;
-    }
+        .order-summary {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
 
-    .btn-back:hover {
-      background-color: #888;
-    }
+        .summary-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ddd;
+        }
 
-    @media (max-width: 600px) {
-      .container {
-        margin: 20px;
-        padding: 20px;
-      }
-    }
-  </style>
+        .summary-header i {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .summary-header h3 {
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .item-quantity {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .total-price {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            text-align: right;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(201, 169, 110, 0.05);
+        }
+
+        .payment-option.selected {
+            border-color: var(--primary-color);
+            background: var(--gold-gradient);
+            color: white;
+        }
+
+        .payment-option i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .btn-submit, .btn-back {
+            background: var(--gold-gradient);
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 169, 110, 0.4);
+        }
+
+        .btn-back:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-cart i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        .empty-cart h3 {
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            .checkout-header h2 {
+                font-size: 2rem;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="checkout-header">
+            <h2>Checkout</h2>
+            <p>Complete your order to Uncle Wang Kopitiam</p>
+        </div>
 
-  <div class="container">
-    <h2>Checkout</h2>
-    <form id="checkout-form">
-      <label for="name">Nama Pembeli</label>
-      <input type="text" id="name" placeholder="Contoh: Steven" required />
+        <div id="checkout-form-container">
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="name">
+                        <i class="fas fa-user"></i> Customer Name *
+                    </label>
+                    <input type="text" id="name" placeholder="Enter your name" required />
+                </div>
 
-      <label for="note">Catatan Tambahan</label>
-      <textarea id="note" rows="3" placeholder="Contoh: Jangan terlalu manis..."></textarea>
+                <div class="form-group">
+                    <label for="phone">
+                        <i class="fas fa-phone"></i> Phone Number *
+                    </label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number" required />
+                </div>
 
-      <div class="order-summary">
-        <strong>Ringkasan Pesanan</strong>
-        <div id="order-items"></div>
-        <div class="total-price" id="order-total">Total: Rp 0</div>
-      </div>
+                <div class="form-group">
+                    <label for="table">
+                        <i class="fas fa-chair"></i> Table Number
+                    </label>
+                    <select id="table">
+                        <option value="">Select table (optional)</option>
+                        <option value="1">Table 1</option>
+                        <option value="2">Table 2</option>
+                        <option value="3">Table 3</option>
+                        <option value="4">Table 4</option>
+                        <option value="5">Table 5</option>
+                        <option value="6">Table 6</option>
+                        <option value="7">Table 7</option>
+                        <option value="8">Table 8</option>
+                        <option value="takeaway">Take Away</option>
+                    </select>
+                </div>
 
-      <button type="submit" class="btn-submit">Bayar Sekarang</button>
-      <button type="button" class="btn-back" onclick="window.location.href='index.html'">← Kembali ke Menu</button>
-    </form>
-  </div>
+                <div class="form-group">
+                    <label for="note">
+                        <i class="fas fa-sticky-note"></i> Special Instructions
+                    </label>
+                    <textarea id="note" rows="3" placeholder="Any special requests or notes..."></textarea>
+                </div>
 
-  <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const orderItemsContainer = document.getElementById('order-items');
-    const totalDisplay = document.getElementById('order-total');
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-credit-card"></i> Payment Method *
+                    </label>
+                    <div class="payment-methods">
+                        <div class="payment-option" data-method="cash">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>Cash</div>
+                        </div>
+                        <div class="payment-option" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <div>Card</div>
+                        </div>
+                        <div class="payment-option" data-method="ewallet">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>E-Wallet</div>
+                        </div>
+                        <div class="payment-option" data-method="qris">
+                            <i class="fas fa-qrcode"></i>
+                            <div>QRIS</div>
+                        </div>
+                    </div>
+                </div>
 
-    let total = 0;
+                <div class="order-summary">
+                    <div class="summary-header">
+                        <i class="fas fa-receipt"></i>
+                        <h3>Order Summary</h3>
+                    </div>
+                    <div id="order-items"></div>
+                    <div class="order-item">
+                        <div class="item-details">
+                            <div class="item-name">Total Amount</div>
+                        </div>
+                        <div class="total-price" id="order-total">Rp 0</div>
+                    </div>
+                </div>
 
-    cart.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.className = 'order-item';
-      itemDiv.innerHTML = `<span>${item.name} x${item.quantity || 1}</span><span>Rp ${item.price.toLocaleString()}</span>`;
-      orderItemsContainer.appendChild(itemDiv);
-      total += item.price * (item.quantity || 1);
-    });
+                <div class="success-message" id="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    Order submitted successfully! Please wait for confirmation.
+                </div>
 
-    totalDisplay.textContent = 'Total: Rp ' + total.toLocaleString();
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Place Order
+                </button>
+                
+                <button type="button" class="btn-back" onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Menu
+                </button>
+            </form>
+        </div>
 
-    // Simulasi submit
-    document.getElementById('checkout-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Pesanan berhasil demo sampai sini saja');
-      window.location.href = 'success.html';
-    });
-  </script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-const orderItemsContainer = document.getElementById('order-items');
-const totalDisplay = document.getElementById('order-total');
+        <div class="empty-cart" id="empty-cart" style="display: none;">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Your cart is empty</h3>
+            <p>Add some delicious items from our menu</p>
+            <button class="btn-back" onclick="window.location.href='index.html'">
+                <i class="fas fa-utensils"></i>
+                Browse Menu
+            </button>
+        </div>
+    </div>
 
-let total = 0;
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Processing your order...</h3>
+            <p>Please wait while we confirm your order</p>
+        </div>
+    </div>
 
-if (cart.length === 0) {
-  orderItemsContainer.innerHTML = '<p style="color: #999; text-align: center;">Keranjang masih kosong.</p>';
-  totalDisplay.textContent = 'Total: Rp 0';
-} else {
-  cart.forEach(item => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'order-item';
-    itemDiv.innerHTML = `<span>${item.name} x${item.quantity || 1}</span><span>Rp ${item.price.toLocaleString()}</span>`;
-    orderItemsContainer.appendChild(itemDiv);
-    total += item.price * (item.quantity || 1);
-  });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItemsContainer = document.getElementById('order-items');
+            const totalDisplay = document.getElementById('order-total');
+            const checkoutForm = document.getElementById('checkout-form');
+            const emptyCart = document.getElementById('empty-cart');
+            const checkoutContainer = document.getElementById('checkout-form-container');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const successMessage = document.getElementById('success-message');
+            const submitBtn = document.getElementById('submit-btn');
 
-  totalDisplay.textContent = 'Total: Rp ' + total.toLocaleString();
-}
+            let selectedPaymentMethod = '';
+            let total = 0;
 
+            // Check if cart is empty
+            if (cart.length === 0) {
+                checkoutContainer.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
 
+            // Render cart items
+            function renderCartItems() {
+                orderItemsContainer.innerHTML = '';
+                total = 0;
+
+                cart.forEach(item => {
+                    const itemTotal = item.price * (item.quantity || 1);
+                    total += itemTotal;
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'order-item';
+                    itemDiv.innerHTML = `
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-quantity">Quantity: ${item.quantity || 1}</div>
+                        </div>
+                        <div class="item-price">${formatCurrency(itemTotal)}</div>
+                    `;
+                    orderItemsContainer.appendChild(itemDiv);
+                });
+
+                totalDisplay.textContent = formatCurrency(total);
+            }
+
+            // Payment method selection
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove previous selection
+                    document.querySelectorAll('.payment-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selection to clicked option
+                    this.classList.add('selected');
+                    selectedPaymentMethod = this.dataset.method;
+                });
+            });
+
+            // Form submission
+            checkoutForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const customerName = document.getElementById('name').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const table = document.getElementById('table').value;
+                const note = document.getElementById('note').value.trim();
+
+                // Validation
+                if (!customerName) {
+                    alert('Please enter customer name');
+                    return;
+                }
+
+                if (!phone) {
+                    alert('Please enter phone number');
+                    return;
+                }
+
+                if (!selectedPaymentMethod) {
+                    alert('Please select a payment method');
+                    return;
+                }
+
+                // Show loading
+                loadingOverlay.style.display = 'flex';
+                submitBtn.disabled = true;
+
+                // Prepare order data
+                const orderData = {
+                    customer: customerName,
+                    phone: phone,
+                    table: table || 'Not specified',
+                    items: cart,
+                    total: total,
+                    paymentMethod: selectedPaymentMethod,
+                    note: note,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Simulate processing delay
+                setTimeout(() => {
+                    // Send order to cashier system
+                    sendOrderToCashier(orderData);
+                    
+                    // Hide loading
+                    loadingOverlay.style.display = 'none';
+                    
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Clear cart
+                    localStorage.removeItem('cart');
+                    
+                    // Redirect to success page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'success.html';
+                    }, 2000);
+                }, 2000);
+            });
+
+            function sendOrderToCashier(orderData) {
+                // Store order for cashier system
+                localStorage.setItem('pendingOrder', JSON.stringify(orderData));
+                
+                // Trigger storage event for cashier page (if open in another tab)
+                localStorage.setItem('newOrder', JSON.stringify(orderData));
+                localStorage.removeItem('newOrder'); // Remove immediately to trigger event
+                
+                // Store in restaurant orders
+                const existingOrders = JSON.parse(localStorage.getItem('restaurantOrders')) || [];
+                const orderCounter = parseInt(localStorage.getItem('orderCounter')) || 1;
+                
+                const newOrder = {
+                    id: `#${String(orderCounter).padStart(4, '0')}`,
+                    customer: orderData.customer,
+                    phone: orderData.phone,
+                    table: orderData.table,
+                    items: orderData.items,
+                    total: orderData.total,
+                    paymentMethod: orderData.paymentMethod,
+                    status: 'pending',
+                    timestamp: orderData.timestamp,
+                    note: orderData.note
+                };
+
+                existingOrders.unshift(newOrder);
+                localStorage.setItem('restaurantOrders', JSON.stringify(existingOrders));
+                localStorage.setItem('orderCounter', (orderCounter + 1).toString());
+                
+                console.log('Order sent to cashier:', newOrder);
+            }
+
+            function formatCurrency(amount) {
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR'
+                }).format(amount);
+            }
+
+            // Initialize
+            renderCartItems();
+        });
+    </script>
 </body>
 </html>

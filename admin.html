@@ -1,0 +1,201 @@
+<!-- === FILE: admin.html === -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Uncle Wang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --primary-color: #c9a96e;
+        --secondary-color: #2c1810;
+        --accent-color: #e74c3c;
+        --text-light: #f8f9fa;
+        --text-dark: #2c3e50;
+        --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gold-gradient: linear-gradient(45deg, #c9a96e, #f4e4bc);
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-dark);
+        background: #fafbfc;
+        margin: 0;
+        display: flex;
+    }
+
+    h1, h2 {
+        font-family: 'Playfair Display', serif;
+        color: var(--primary-color);
+    }
+
+    .sidebar {
+        background: var(--gold-gradient);
+        padding: 1rem;
+        width: 250px;
+        min-height: 100vh;
+        color: white;
+    }
+
+    .sidebar h2 {
+        color: white;
+    }
+
+    .sidebar a {
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        display: block;
+        margin: 1rem 0;
+    }
+
+    .main-content {
+        flex-grow: 1;
+        padding: 2rem;
+        background: white;
+        margin: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    input, select, button {
+        font-family: 'Inter', sans-serif;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+
+    #add-item {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        margin-top: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    #add-item:hover {
+        background: var(--secondary-color);
+    }
+
+    ul#items-list {
+        padding: 0;
+        list-style: none;
+    }
+
+    ul#items-list li {
+        padding: 0.75rem;
+        border-bottom: 1px solid #eee;
+    }
+
+    .delete-btn {
+        float: right;
+        color: red;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="#">Manage Menu</a>
+    <a href="#">Orders</a>
+    <a href="#">Reports</a>
+  </div>
+  <div class="main-content">
+    <h1>Manage Food & Drink Items</h1>
+    <input type="text" id="item-name" placeholder="Item Name" required>
+    <input type="number" id="item-stock" placeholder="Stock" required>
+    <button id="add-item">Add Item</button>
+
+    <h2 style="margin-top: 2rem;">Items List</h2>
+    <ul id="items-list"></ul>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const nameInput = document.getElementById('item-name');
+        const stockInput = document.getElementById('item-stock');
+        const addButton = document.getElementById('add-item');
+        const itemsList = document.getElementById('items-list');
+
+        let menuItems = JSON.parse(localStorage.getItem('menuItems')) || [];
+
+        function renderItems() {
+            itemsList.innerHTML = '';
+            menuItems.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${item.name}</strong> - Stock: ${item.stock}
+                    <button class="delete-btn" onclick="deleteItem(${index})">Delete</button>
+                `;
+                itemsList.appendChild(li);
+            });
+        }
+
+        window.deleteItem = function(index) {
+            menuItems.splice(index, 1);
+            localStorage.setItem('menuItems', JSON.stringify(menuItems));
+            renderItems();
+        }
+
+        addButton.addEventListener('click', () => {
+            if (!nameInput.value || !stockInput.value) return alert("Fill all fields");
+
+            menuItems.push({ name: nameInput.value, stock: parseInt(stockInput.value) });
+            localStorage.setItem('menuItems', JSON.stringify(menuItems));
+            renderItems();
+
+            nameInput.value = '';
+            stockInput.value = '';
+        });
+
+        renderItems();
+    });
+  </script>
+</body>
+</html>
+
+<!-- === END OF admin.html === -->
+
+
+<!-- === Tambahkan di index.html di bagian <script> bawah (atau file JS) === -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuContainer = document.querySelector('.menu-grid');
+    if (!menuContainer) return;
+
+    const storedItems = JSON.parse(localStorage.getItem('menuItems')) || [];
+
+    storedItems.forEach(item => {
+        const itemHTML = `
+            <div class="menu-category">
+                <div class="category-header">
+                    <div class="category-content">
+                        <h3 class="category-title">${item.name}</h3>
+                        <p class="category-desc">Stock: ${item.stock}</p>
+                    </div>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4>${item.name}</h4>
+                            <p>Custom menu added from admin</p>
+                            <span class="item-price">Rp -</span>
+                        </div>
+                        <button class="add-btn" data-name="${item.name}" data-price="0">Add</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        menuContainer.insertAdjacentHTML('beforeend', itemHTML);
+    });
+  });
+</script>
+<!-- === END OF index.html SCRIPT === -->
